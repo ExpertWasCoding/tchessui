@@ -11,9 +11,14 @@ pub mod get_board_vector {
     }
 }
 
-mod print_board {
-    pub fn print_board() {
-        todo!()
+pub mod print_board {
+    pub fn print_board(board: Vec<[&str; 8]>) {
+        for ranks in board {
+            for squares in ranks {
+                print!("{}", squares);
+            }
+            print!("\n");
+        }
     }
 }
 
@@ -23,6 +28,6 @@ mod tests {
 
     #[test]
     fn it_works() {
-        assert_eq!(get_board_vector::get_board().len(), 64);
+        assert_eq!(get_board_vector::get_board().len(), 8);
     }
 }

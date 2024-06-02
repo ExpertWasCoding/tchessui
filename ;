@@ -1,5 +1,0 @@
-use chess::get_board;
-fn main() {
-    let board = get_board();
-    println!("{}", board);
-}
