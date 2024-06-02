@@ -1,3 +1,5 @@
+use chess::get_board_vector::get_board;
 fn main() {
-    println!("Hello, world!");
+    let board = get_board();
+    println!("{:?}", board);
 }

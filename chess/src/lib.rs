@@ -1,4 +1,4 @@
-mod get_board_vector {
+pub mod get_board_vector {
     pub fn get_board() -> Vec<&'static str> {
         let mut board = Vec::new();
         for _ in 0..=31 {
