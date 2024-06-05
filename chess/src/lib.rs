@@ -5,6 +5,7 @@ pub mod print_board {
         for ranks in board {
             for squares in ranks {
                 print!("{}", squares);
+                print!(" ");
             }
             print!("\n");
         }
