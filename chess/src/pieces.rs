@@ -19,28 +19,32 @@ impl Piece {
     }
 }
 
-pub fn get_pieces() -> Vec<Piece> {
+pub fn get_pieces() -> Vec<Vec<Piece>> {
     let mut pieces = Vec::new();
     let piece_types = vec![
-        ("Pawn", 1, 8),
-        ("Rook", 5, 2),
-        ("Knight", 3, 2),
-        ("Bishop", 3, 2),
-        ("Queen", 9, 1),
-        ("King", 0, 1),
+        (("♙", "♟"), 1, 8),
+        (("♖", "♜"), 5, 1),
+        (("♘", "♞"), 3, 1),
+        (("♗", "♝"), 3, 1),
+        (("♕", "♛"), 9, 1),
+        (("♔", "♚"), 0, 1),
+        (("♗", "♝"), 3, 1),
+        (("♘", "♞"), 3, 1),
+        (("♖", "♜"), 5, 1),
     ];
 
     for (name, value, count) in &piece_types {
         for _ in 0..*count {
-            pieces.push(Piece::new(name, *value, Color::White));
+            pieces.push(Piece::new(name.1, *value, Color::White));
         }
     }
 
     for (name, value, count) in &piece_types {
         for _ in 0..*count {
-            pieces.push(Piece::new(name, *value, Color::Black));
+            pieces.push(Piece::new(name.0, *value, Color::Black));
         }
     }
+    let nested_pieces: Vec<Vec<Piece>> = pieces.chunks(8).map(|chunk| chunk.to_vec()).collect();
 
-    pieces
+    nested_pieces
 }
