@@ -6,8 +6,8 @@ fn main() {
     let board_pieces = get_pieces();
     board[0] = board_pieces[1].clone();
     board[1] = board_pieces[0].clone();
-    board[6] = board_pieces[3].clone();
-    board[7] = board_pieces[2].clone();
+    board[6] = board_pieces[2].clone();
+    board[7] = board_pieces[3].clone();
 
     print_board(board);
 }
