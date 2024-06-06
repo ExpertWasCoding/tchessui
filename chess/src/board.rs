@@ -1,8 +1,39 @@
-pub fn get_board() -> Vec<[&'static str; 8]> {
+pub use crate::pieces::{Color, Piece};
+
+pub fn get_board() -> Vec<Vec<Piece>> {
     let mut board = Vec::new();
+    let white_square = Piece {
+        name: String::from("■"),
+        value: 0,
+        color: Color::White,
+    };
+    let black_square = Piece {
+        name: String::from("□"),
+        value: 0,
+        color: Color::Black,
+    };
+
     for _ in 0..4 {
-        let file_odd = ["■", "□", "■", "□", "■", "□", "■", "□"];
-        let file_even = ["□", "■", "□", "■", "□", "■", "□", "■"];
+        let file_odd = vec![
+            white_square.clone(),
+            black_square.clone(),
+            white_square.clone(),
+            black_square.clone(),
+            white_square.clone(),
+            black_square.clone(),
+            white_square.clone(),
+            black_square.clone(),
+        ];
+        let file_even = vec![
+            black_square.clone(),
+            white_square.clone(),
+            black_square.clone(),
+            white_square.clone(),
+            black_square.clone(),
+            white_square.clone(),
+            black_square.clone(),
+            white_square.clone(),
+        ];
         board.push(file_odd);
         board.push(file_even);
     }

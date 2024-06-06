@@ -1,9 +1,9 @@
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum Color {
     White,
     Black,
 }
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Piece {
     pub name: String,
     pub value: i32,
