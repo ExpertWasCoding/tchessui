@@ -3,13 +3,13 @@ pub use crate::pieces::{Color, Piece};
 pub fn get_board() -> Vec<Vec<Piece>> {
     let mut board = Vec::new();
     let white_square = Piece {
-        symbol: String::from("■"),
+        symbol: "■",
         notation: None,
         value: 0,
         color: Color::White,
     };
     let black_square = Piece {
-        symbol: String::from("□"),
+        symbol: "□",
         notation: None,
         value: 0,
         color: Color::Black,

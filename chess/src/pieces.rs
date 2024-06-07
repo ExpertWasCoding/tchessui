@@ -1,19 +1,19 @@
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Copy)]
 pub enum Color {
     White,
     Black,
 }
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Copy)]
 pub struct Piece {
-    pub symbol: String,
+    pub symbol: &'static str,
     pub notation: Option<char>,
     pub value: i32,
     pub color: Color,
 }
 impl Piece {
-    fn new(name: &str, notation: char, value: i32, color: Color) -> Piece {
+    fn new(name: &'static str, notation: char, value: i32, color: Color) -> Piece {
         Piece {
-            symbol: name.to_string(),
+            symbol: name,
             notation: Some(notation),
             value,
             color,
