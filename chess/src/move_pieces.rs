@@ -24,10 +24,13 @@ pub fn move_piece(input: String, mut board: Vec<Vec<Piece>>) -> Vec<Vec<Piece>> 
 }
 
 fn pawn_move(mut board: Vec<Vec<Piece>>, position: usize, file: char) -> Vec<Vec<Piece>> {
-    if board[position - 1][letter_to_number(file)].notation == Some('P') {
-        board[position][letter_to_number(file)] = board[position - 1][letter_to_number(file)];
-        board[position - 1][letter_to_number(file)] = BLACK_SQUARE;
-    };
+    let dest_row = position - 1;
+    let dest_col = letter_to_number(file);
+
+    board[dest_row][dest_col] = board[dest_row - 2][dest_col];
+
+    board[dest_row - 2][dest_col] = BLACK_SQUARE;
+
     return board;
 }
 
