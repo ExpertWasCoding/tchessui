@@ -22,28 +22,28 @@ pub fn move_piece(input: String, mut board: Vec<Vec<Piece>>) -> Vec<Vec<Piece>> 
     }
     return updated_pawn_move;
 }
-
 fn pawn_move(mut board: Vec<Vec<Piece>>, position: usize, file: char) -> Vec<Vec<Piece>> {
     let dest_row = position - 1;
     let dest_col = letter_to_number(file);
+    if board[dest_row - 2][dest_col].notation == Some('P') {
+        board[dest_row][dest_col] = board[dest_row - 2][dest_col];
 
-    board[dest_row][dest_col] = board[dest_row - 2][dest_col];
-
-    board[dest_row - 2][dest_col] = BLACK_SQUARE;
+        board[dest_row - 2][dest_col] = BLACK_SQUARE;
+    }
 
     return board;
 }
 
 fn letter_to_number(letter: char) -> usize {
     match letter {
-        'a' => 1,
-        'b' => 2,
-        'c' => 3,
-        'd' => 4,
-        'e' => 5,
-        'f' => 6,
-        'g' => 7,
-        'h' => 8,
-        _ => 0,
+        'a' => 0,
+        'b' => 1,
+        'c' => 2,
+        'd' => 3,
+        'e' => 4,
+        'f' => 5,
+        'g' => 6,
+        'h' => 7,
+        _ => 404,
     }
 }

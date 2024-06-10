@@ -18,7 +18,7 @@ fn main() {
     let mut current_board = board.clone();
     loop {
         current_board = move_piece(mov.clone(), current_board);
-        thread::sleep(Duration::from_secs(5));
+        thread::sleep(Duration::from_secs(1));
         print_board(current_board.clone());
     }
 }
