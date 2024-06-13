@@ -1,4 +1,5 @@
 use chess::board::get_board;
+use chess::board::Color;
 use chess::move_pieces::move_piece;
 use chess::pieces::get_pieces;
 use chess::print_board::print_board;
@@ -16,10 +17,15 @@ fn main() {
     print_board(board.clone());
     let mov = String::from("e4");
     let mut current_board = board.clone();
+    let mut current_turn: Color = Color::White;
     loop {
-        current_board = move_piece(mov.clone(), current_board);
+        current_board = move_piece(mov.clone(), current_board, current_turn);
         thread::sleep(Duration::from_secs(1));
         print_board(current_board.clone());
+        match current_turn {
+            Color::White => current_turn = Color::Black,
+            Color::Black => current_turn = Color::White,
+        }
     }
 }
 //TODO, add notation to board i*n
