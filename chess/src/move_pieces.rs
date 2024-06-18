@@ -1,35 +1,57 @@
 use crate::board::{Piece, BLACK_SQUARE, WHITE_SQUARE};
 use crate::pieces::{self, Color};
+use crate::process_move::{self, process};
 use std::usize;
+pub struct Current_move_string {
+    pub destination_file: Option<char>,
+    pub destination_number: Option<char>,
+    pub takes_or_not: bool,
+    pub castling: bool,
+}
+
+impl Current_move_string {
+    fn new(input: String) -> Current_move_string {
+        let takes_or_not: bool = false;
+        let castling: bool = false;
+        let destination_number: Option<char>;
+        let destination_file: Option<char>;
+        match input.len() {
+            2 => {
+                destination_file = input.chars().next();
+                destination_number = input.chars().next();
+            }
+            3 => {
+                todo!()
+            }
+            4 => {
+                todo!()
+            }
+            5 => {
+                todo!()
+            }
+            _ => {
+                todo!()
+            }
+        }
+        Current_move_string {
+            destination_file,
+            destination_number,
+            takes_or_not,
+            castling,
+        }
+    }
+}
 
 pub fn move_piece(
     input: String,
     mut board: Vec<Vec<Piece>>,
     current_turn: Color,
 ) -> Vec<Vec<Piece>> {
-    let mut updated_pawn_move = board.clone(); // Make this mutable
-    for (index, ch) in input.chars().enumerate() {
-        if index == 0 && ('a'..='z').contains(&ch) {
-            println!("First letter exists and is lowercase");
-            if let Some(second_ch) = input.chars().nth(1) {
-                if second_ch.is_digit(10) {
-                    updated_pawn_move = pawn_move(
-                        board.clone(),
-                        second_ch.to_digit(10).unwrap() as usize,
-                        ch,
-                        current_turn,
-                    );
-                } else if second_ch == 'x' {
-                    todo!();
-                }
-            } else {
-                println!("No second character");
-            }
-            break;
-        }
-    }
-    return updated_pawn_move;
+    let Current_move = Current_move_string::new(input);
+    let processed_board = process(Current_move, board);
+    return processed_board;
 }
+
 fn pawn_move(
     mut board: Vec<Vec<Piece>>,
     position: usize,
@@ -43,20 +65,5 @@ fn pawn_move(
 
         board[dest_row - 2][dest_col] = BLACK_SQUARE;
     }
-
     return board;
-}
-
-fn letter_to_number(letter: char) -> usize {
-    match letter {
-        'a' => 0,
-        'b' => 1,
-        'c' => 2,
-        'd' => 3,
-        'e' => 4,
-        'f' => 5,
-        'g' => 6,
-        'h' => 7,
-        _ => 404,
-    }
 }
